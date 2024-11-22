@@ -49,7 +49,7 @@ import acmemedical.entity.MedicalSchool;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "public", columnDefinition = "BIT(1)", discriminatorType = DiscriminatorType.INTEGER)
 @NamedQuery(name = MedicalSchool.SPECIFIC_MEDICAL_SCHOOL_QUERY_ID, query = "SELECT distinct ms FROM MedicalSchool ms left join fetch ms.medicalTrainings WHERE sc.id=:param1")
-@NamedQuery(name = MedicalSchool.MEDICAL_SCHOOL_QUERY, query = "SELECT distinct ms FROM MedicalSchool ms left join fetch ms.medicalCertificates ")
+@NamedQuery(name = MedicalSchool.MEDICAL_SCHOOL_QUERY, query = "SELECT distinct ms FROM MedicalSchool ms left join fetch ms.medicalTrainings ")
 @NamedQuery(name = MedicalSchool.IS_DUPLICATE_QUERY_NAME, query = "SELECT COUNT(ms.name) FROM MedicalSchool ms WHERE ms.name = :param1")
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "entity-type")

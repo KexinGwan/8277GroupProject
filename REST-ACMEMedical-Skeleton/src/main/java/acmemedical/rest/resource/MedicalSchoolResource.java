@@ -23,8 +23,10 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
 import static acmemedical.utility.MyConstants.ADMIN_ROLE;
 import static acmemedical.utility.MyConstants.USER_ROLE;
+
 import jakarta.ws.rs.core.Response.Status;
 import static acmemedical.utility.MyConstants.MEDICAL_SCHOOL_RESOURCE_NAME;
 
@@ -59,6 +61,7 @@ public class MedicalSchoolResource {
     
     @GET
     // TODO MSR01 - Specify the roles allowed for this method
+    @RolesAllowed({ ADMIN_ROLE, USER_ROLE })
     @Path("/{medicalSchoolId}")
     public Response getMedicalSchoolById(@PathParam("medicalSchoolId") int medicalSchoolId) {
         LOG.debug("Retrieving medical school with id = {}", medicalSchoolId);
@@ -69,6 +72,7 @@ public class MedicalSchoolResource {
 
     @DELETE
     // TODO MSR02 - Specify the roles allowed for this method
+    @RolesAllowed({ ADMIN_ROLE })
     @Path("/{medicalSchoolId}")
     public Response deleteMedicalSchool(@PathParam("medicalSchoolId") int msId) {
         LOG.debug("Deleting medical school with id = {}", msId);
