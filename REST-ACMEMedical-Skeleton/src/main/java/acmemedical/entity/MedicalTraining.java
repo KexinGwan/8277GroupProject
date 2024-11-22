@@ -11,10 +11,28 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.OneToOne;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 @SuppressWarnings("unused")
-
+@Entity
+@Table(name = "medical_training")
+@AttributeOverride(name = "id", column = @Column(name = "training_id"))
+@NamedQuery(name = MedicalTraining.FIND_BY_ID, query = "SELECT mt FROM MedicalTraining mt left join fetch cm.school WHERE cm.id = :param1")
+@NamedQuery(name = MedicalTraining.FIND_ALL, query = "SELECT  mt FROM MedicalTraining mt left join fetch cm.school  ")
 /**
  * The persistent class for the medical_training database table.
  */
@@ -23,10 +41,19 @@ import jakarta.persistence.Embedded;
 public class MedicalTraining extends PojoBase implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	public static final String FIND_BY_ID = "MedicalTraining.findById";
+	public static final String FIND_ALL = "MedicalTraining.findAll";
+
+	
 	// TODO MT03 - Add annotations for M:1.  What should be the cascade and fetch types?
+	@ManyToOne(cascade ={CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+	@JoinColumn(name = "school_id", referencedColumnName = "school_id")
+	@JsonBackReference 
 	private MedicalSchool school;
 
 	// TODO MT04 - Add annotations for 1:1.  What should be the cascade and fetch types?
+	@OneToOne(mappedBy = "medicalTraining")
+	@JsonBackReference(value = "school-medicalCertificate")
 	private MedicalCertificate certificate;
 
 	@Embedded

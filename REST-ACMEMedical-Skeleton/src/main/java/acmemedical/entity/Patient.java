@@ -10,6 +10,14 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
 @SuppressWarnings("unused")
 
 /**
@@ -17,31 +25,43 @@ import java.util.Set;
  */
 //TODO PA01 - Add the missing annotations.
 //TODO PA02 - Do we need a mapped super class?  If so, which one?
+@Entity
+@Table(name = "patient")
+@Access(AccessType.FIELD)
+@AttributeOverride(name = "id", column = @Column(name = "patient_id"))
 public class Patient extends PojoBase implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// TODO PA03 - Add missing annotations.
+	@Column(name = "first_name")
 	private String firstName;
 
 	// TODO PA04 - Add missing annotations.
+	@Column(name = "last_name")
 	private String lastName;
 
 	// TODO PA05 - Add missing annotations.
+	@Column(name = "year_of_birth")
 	private int year;
 
 	// TODO PA06 - Add missing annotations.
+	@Column(name = "address")
 	private String address;
 
 	// TODO PA07 - Add missing annotations.
+	@Column(name = "height")
 	private int height;
 
 	// TODO PA08 - Add missing annotations.
+	@Column(name = "weight")
 	private int weight;
 
 	// TODO PA09 - Add missing annotations.
+	@Column(name = "smoker")
 	private byte smoker;
 
 	// TODO PA10 - Add annotations for 1:M relation.  What should be the cascade and fetch types?
+	@OneToMany(mappedBy="patient")
 	private Set<Prescription> prescriptions = new HashSet<>();
 
 	public Patient() {

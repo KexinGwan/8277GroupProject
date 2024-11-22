@@ -30,7 +30,7 @@ import static acmemedical.utility.MyConstants.USER_ROLE;
 import static acmemedical.utility.MyConstants.USER_ROLE;
 //import static acmemedical.entity.MedicalSchool.ALL_MEDICAL_SCHOOLS_QUERY_NAME;
 import static acmemedical.entity.MedicalSchool.IS_DUPLICATE_QUERY_NAME;
-import static acmemedical.entity.MedicalSchool.SPECIFIC_MEDICAL_SCHOOL_QUERY_NAME;
+import static acmemedical.entity.MedicalSchool.SPECIFIC_MEDICAL_SCHOOL_QUERY_ID;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -226,7 +226,7 @@ public class ACMEMedicalService implements Serializable {
             medicalTrainings.forEach(list::add);
             list.forEach(mt -> {
                 if (mt.getCertificate() != null) {
-                    MedicalCertificate mc = getById(MedicalCertificate.class, MedicalCertificate.ID_CARD_QUERY_NAME, mt.getCertificate().getId());
+                    MedicalCertificate mc = getById(MedicalCertificate.class, MedicalCertificate.ID_CERTIFICATE_QUERY_NAME, mt.getCertificate().getId());
                     mc.setMedicalTraining(null);
                 }
                 mt.setCertificate(null);

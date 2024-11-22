@@ -11,20 +11,20 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -32,9 +32,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
-import acmecollege.entity.AcademicStudentClub;
-import acmecollege.entity.NonAcademicStudentClub;
-import acmecollege.entity.StudentClub;
+import acmemedical.entity.PublicSchool;
+import acmemedical.entity.PrivateSchool;
+import acmemedical.entity.MedicalSchool;
 
 /**
  * The persistent class for the medical_school database table.
@@ -58,6 +58,10 @@ import acmecollege.entity.StudentClub;
 
 public abstract class MedicalSchool extends PojoBase implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String SPECIFIC_MEDICAL_SCHOOL_QUERY_ID = "MedicalSchool.findById";
+	public static final String IS_DUPLICATE_QUERY_NAME = "MedicalSchool.duplicateName";
+	public static final String MEDICAL_SCHOOL_QUERY = "MedicalSchool.findAll";
 	
 	// TODO MS05 - Add the missing annotations.
 	@Basic(optional = false)

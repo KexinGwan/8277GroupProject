@@ -10,9 +10,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 
 //TODO DS01 - This class is not an entity however it can be embedded in other entities.  Add missing annotation.
 @Embeddable
