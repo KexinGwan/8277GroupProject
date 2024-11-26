@@ -26,7 +26,7 @@ public class PojoListener {
 	}
 
 	// TODO PL03 - What annotation is used when we want to do something just before object is UPDATE'd in the database?
-	@PrePersist
+	@PreUpdate
 	public void setUpdatedDate(PojoBase pojoBase) {
 		// TODO PL04 - What member field(s) do we wish to alter just before object is UPDATE'd in the database?
 		pojoBase.setUpdated(LocalDateTime.now());
