@@ -53,7 +53,6 @@ public class Prescription extends PojoBaseCompositeKey<PrescriptionPK> implement
 	private Patient patient;
 
 	//TODO PR02 - Add missing annotations.  What should be the cascade and fetch types?
-	@MapsId("medicineId")
     @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "medicine_id", referencedColumnName = "medicine_id", nullable = false)
     @JsonBackReference(value="prescription-medicine")

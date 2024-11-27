@@ -36,11 +36,11 @@ import acmemedical.entity.MedicalCertificate;
 @Table(name = "medical_certificate")
 @AttributeOverride(name = "id", column = @Column(name = "certificate_id"))
 @NamedQuery(name = MedicalCertificate.ID_CERTIFICATE_QUERY_NAME, query =
-"SELECT  ms FROM MedicalCertificate ms left join fetch ms.owner left join fetch ms.medicalTraining WHERE mc.id=:param1")
+"SELECT  mc FROM MedicalCertificate mc left join fetch mc.owner left join fetch mc.medicalTraining WHERE mc.id=:param1")
 @NamedQuery(name = MedicalCertificate.CERTIFICATE_QUERY_NAME, query =
-"SELECT  ms FROM MedicalCertificate ms left join fetch ms.owner left join fetch ms.medicalTraining ")
+"SELECT  mc FROM MedicalCertificate mc left join fetch mc.owner left join fetch mc.medicalTraining ")
 @NamedQuery(name = MedicalCertificate.CERTIFICATE_QUERY_By_Physician_MedicalTraining, query =
-"SELECT  ms FROM MedicalCertificate ms left join fetch ms.owner left join fetch ms.medicalTraining where ms.owner=:param1 and ms.medicalTraining=:param2")
+"SELECT  mc FROM MedicalCertificate mc left join fetch mc.owner left join fetch mc.medicalTraining where mc.owner=:param1 and mc.medicalTraining=:param2")
 public class MedicalCertificate extends PojoBase implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
